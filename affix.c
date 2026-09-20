@@ -3,8 +3,8 @@
 #include <string.h>
 
 int main() {
-    char *firstWord = malloc(100 * sizeof(char));
-    char *secondWord = malloc(100 * sizeof(char));
+    char *firstWord = malloc(100);
+    char *secondWord = malloc(100);
     printf("Enter the first word: ");
     scanf("%s", firstWord);
     printf("Enter the second word: ");
