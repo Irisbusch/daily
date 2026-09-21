@@ -1,15 +1,25 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 int main(void) {
-    printf("%c\n", 'X');      // X
-    printf("%d\n", 'X');      // 88（ASCII 码）
+    char buffer[100];
+    fgets(buffer, sizeof(buffer), stdin);
 
-    printf("%s\n", "X");      // X
-    printf("%zu\n", sizeof('X'));   // 4（C）或 1（C++）
-    printf("%zu\n", sizeof("X"));   // 2
+    buffer[strcspn(buffer, "\n")] = '\0';
 
-    // 字符可以用 %c 打印，也可以用 %d 打印其编码
-    char c = 'X';
-    printf("%c %d\n", c, c);  // X 88
+    char *p = malloc(strlen(buffer) + 1);
+    if (p == NULL) {          
+        printf("内存分配失败\n");
+        return 1;
+    }
+    strcpy(p, buffer);
+
+    for (int i = (int)strlen(p) - 1; i >= 0; i--) {
+        printf("%c", p[i]);
+    }
+    printf("\n");
+
+    free(p);
     return 0;
 }
